@@ -141,9 +141,6 @@ for(int i = 1; p <= n; i++) {
  + Loop 2: i = 2, then p = 0+1+2
  + Say the loop k is the last one then i = k
  => p = 0+1+2+...+k = k(k+1)/2 when p > n
- => 
-\[
-k^2 > n \quad \Rightarrow \quad k > \sqrt{n}
-\]
- => O (sqrt{n})
+ => Say k<sup>2</sup> > n => k > $\sqrt{9}$
+ => O ($\sqrt{9}$)
 
