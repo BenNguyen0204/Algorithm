@@ -9,8 +9,9 @@ void Add(A, B, n){
         }
     }
 }
+```
 
-NOTES:
+Explain:
 <strong>Time Complexity</strong>
 - Outer loop:
     + (i = 0) - 1 times
@@ -39,7 +40,6 @@ NOTES:
     + i - 1
     + j - 1
 => Total S(n) = 3n<sup>2</sup> + 3
-```
 
 
 
