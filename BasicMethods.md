@@ -1,6 +1,10 @@
 # Algorithm
 
--**Frequency Count Method**
+[More examples](https://www.youtube.com/watch?v=9SgLBjXqwd4&list=PLDN4rrl48XKpZkf03iYFl-O29szjTrs_O&index=7)
+
+## Frequency Count Method
+
+**Example 1**
 ```html
 void Add(A, B, n){
     for (i = 0; i < n; i++){
@@ -11,8 +15,9 @@ void Add(A, B, n){
 }
 ```
 
-<strong>Explain:</strong>
-<emphasize>Time Complexity</emphasize>
+**Explain:**
+
+*Time Complexity*
 - Outer loop:
     + (i = 0) - 1 times
     + (i < n) - n+1 times
@@ -31,7 +36,7 @@ void Add(A, B, n){
 => Total frequency f(n) = (n+1) + ((n+1) * n) + n * n = 2n<sup>2</sup> + 2n + 1
 => O(n<sup>2</sup>)
 
-<emphasize> Space Complexity</emphasize>
+*Space Complexity*
 - Variables we have: 
     + A - n<sup>2</sup>
     + B - n<sup>2</sup>
@@ -42,14 +47,15 @@ void Add(A, B, n){
 => Total S(n) = 3n<sup>2</sup> + 3
 => O(n<sup>2</sup>)
 
--**Example 1:**
+**Example 2:**
 ```html
 for(int i = 1; i < n; i = i+2) {
     do anything;
 }
 ```
-<strong>Explain:</strong>
-<emphasize>Time Complexity:</emphasize>
+**Explain**
+
+*Time Complexity:*
 - Number of comparisons: (i < n):
     + (n/2) + 1
 - Number of iterations:
@@ -60,14 +66,14 @@ for(int i = 1; i < n; i = i+2) {
 => Both give the same: (n/2) times
 => O(n) times
 
-<emphasize>Space Complexity:</emphasize>
+*Space Complexity*
 - Variables we have:
     + i - 1
     + n - 1
 => Total S(n) = 2
 => O(1)
 
--**Example 2:**
+**Example 3:**
 ```html
 for(int i = 0; i < n; i++) {
     for (j = 0; j < i; j++) {
@@ -75,8 +81,9 @@ for(int i = 0; i < n; i++) {
     }
 } 
 ```
-<strong>Explain:</strong>
-<emphasize>Time Complexity:</emphasize>
+**Explain**
+
+*Time Complexity:*
 <table>
 <caption>Examine the loop on the code above</caption>
     <thead>
@@ -126,17 +133,18 @@ for(int i = 0; i < n; i++) {
 => Total time it takes is n(n-1)/2 + n = n(n+1)/2
 => O(n<sup>2</sup>)
 
-<emphasize>Space complexity</emphasize> = O(1)
+*Space Complexity* = O(1)
 
--**Example 2:**
+**Example 4:**
 ```html
 p = 0
 for(int i = 1; p <= n; i++) {
     p = p+1;
 }
 ```
-<strong>Explain:</strong>
-<emphasize>Time Complexity:</emphasize>
+**Explain:**
+
+*Time Complexity:*
  + Loop 1: i = 1, then p = 0+1
  + Loop 2: i = 2, then p = 0+1+2
  + Say the loop k is the last one then i = k
@@ -144,3 +152,75 @@ for(int i = 1; p <= n; i++) {
  => Say k<sup>2</sup> > n => k > $\sqrt{9}$
  => O ($\sqrt{9}$)
 
+*Space Complexity* = O(1)
+
+
+**Example 4:**
+```html
+for(int i = 1; i < n; i=i*2) {
+    do anything
+}
+```
+**Explain:**
+
+*Time Complexity:*
++ i = 2<sup>0</sup> = 1 | i = 2<sup>1</sup> = 2 ... until i = 2<sup>k</sup>
++ Repeat until 2<sup>k</sup> > n => k > log(n)
+=> O(log(n))
+
+*Space Complexity* = O(1)
+
+
+## Technique
+- To find the time complexity of a loop, look at the loop’s stopping condition.
+- Assume the loop stops when the variable reaches some value i = k
+- Then substitute k into the condition to solve for how large k can be.
+- That value of k tells you how many times the loop runs.
+- For example i * i < n, then let k<sup>2</sup> = n which make k = $\sqrt{n}$
+
+**Example 5:**
+```html
+for(int i = 0; i < n; i++) {
+    do anything                 // n iterations
+}
+for(int j = 0; j < n; j++) {
+    do anything                 // n iterations
+}
+```
+- Then total time it takes is 2n because the second loop doesnt dependend on the first
+=> O(n)
+
+**Example 6:**
+```html
+p = 0
+for(int i = 1; i < n; i = i*2){
+    p++;                        // log n so p = log n after it finishes
+}
+
+for(int j = 1; j < p; j = j*2){    
+    do anything                 // log p
+}
+```
+- Then total time it takes is loglog(n) because the second one use p that the first loop alter.
+=> O(loglogn)
+
+**Example 6:**
+```html
+for (i = 0; i < n ; i++) {          // n iterations
+    for (j = 0; j < n; j=j*2) {     // n * log n iterations
+        do anything                 // n * log n iterations
+    }
+}
+```
+=> Total time is n + n * logn + n * logn = 2nlogn + n
+=> O(logn)
+
+**Summary:
+```html
+for(i = 0; i < n; i++)          // O(n)
+for(i = n; i > 1; i--)          // O(n)
+for(i = 0; i < n; i=i+2)        // n/2 iterations => O(n)
+for(i = 1; i < n; i=i*2)        // O(log2 n)
+for(i = 1; i < n; i=i*3)        // O(log3 n)
+for(i = n; i > 1; i=i/2)        // O(log2 n)
+```
